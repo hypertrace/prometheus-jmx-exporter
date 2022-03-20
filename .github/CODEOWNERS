@@ -1,0 +1,7 @@
+# Each line is a file pattern followed by one or more owners.
+
+# global
+* @aaron-steinfeld @tim-mwangi @ravisingal @laxmanchekka
+
+# GH action
+.github/ @aaron-steinfeld @ravisingal @laxmanchekka @kotharironak
