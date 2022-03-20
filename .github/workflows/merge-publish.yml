@@ -1,21 +1,20 @@
-name: Publish artifacts
+name: merge-publish
 on:
-# Will only run when release is published.
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  publish-artifacts:
+  merge-publish:
     runs-on: ubuntu-20.04
     steps:
-      # Set fetch-depth: 0 to fetch commit history and tags for use in version calculation
+       # Set fetch-depth: 0 to fetch commit history and tags for use in version calculation
       - name: Check out code
         uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
-
+      
       - name: create checksum file
         uses: hypertrace/github-actions/checksum@main
 
@@ -34,20 +33,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_READ_USER }}
           password: ${{ secrets.DOCKERHUB_READ_TOKEN }}
 
-      - name: publish docker image
+      - name: push docker image
         uses: hypertrace/github-actions/gradle@main
-        with:
+        with: 
           args: dockerPushImages
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_PUBLISH_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PUBLISH_TOKEN }}
-
-  publish-release-notes:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.3.4
-        with:
-          fetch-depth: 0
-      - uses: hypertrace/github-actions/release-notes@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
