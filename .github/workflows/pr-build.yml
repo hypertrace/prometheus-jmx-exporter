@@ -47,7 +47,7 @@ jobs:
       - name: Scan docker image
         uses: azure/container-scan@v0.1
         with:
-          image-name: hypertrace/kafka-zookeeper:${{ steps.tag.outputs.tag }}
+          image-name: hypertrace/prometheus-jmx-exporter:${{ steps.tag.outputs.tag }}
         env:
           DOCKLE_HOST: "unix:///var/run/docker.sock"
         continue-on-error: true
