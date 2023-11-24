@@ -1,6 +1,6 @@
 FROM eclipse-temurin:11-jre-alpine
 
-ENV JMX_EXPORTER_VERSION=0.19.0
+ENV JMX_EXPORTER_VERSION=0.20.0
 
 RUN mkdir -p /opt/jmx_prometheus_httpserver/config && \
     wget -q -O /opt/jmx_prometheus_httpserver/jmx_prometheus_httpserver.jar https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_httpserver/${JMX_EXPORTER_VERSION}/jmx_prometheus_httpserver-${JMX_EXPORTER_VERSION}.jar
