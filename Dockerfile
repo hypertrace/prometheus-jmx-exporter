@@ -1,6 +1,6 @@
 FROM eclipse-temurin:11-jre-alpine
 
-ENV JMX_EXPORTER_VERSION=0.20.0
+ENV JMX_EXPORTER_VERSION=1.0.1
 
 RUN apk upgrade && \
     mkdir -p /opt/jmx_prometheus_httpserver/config && \
